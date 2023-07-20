@@ -1,0 +1,124 @@
+.table {
+	border-collapse: collapse;
+
+	.header {
+		font-size: 14px;
+		font-weight: 600;
+
+		background: #474955;
+		box-shadow: 0px 4px 27px 0px rgba(230, 231, 234, 0.78);
+		color: #fff;
+
+		tr {
+			text-align: center;
+		}
+
+		th {
+			padding: 0 10px;
+			line-height: 54px;
+
+			cursor: pointer;
+
+			&.active {
+				&::after {
+					content: "";
+					display: inline-block;
+					width: 12px;
+					height: 6px;
+					margin-inline-start: 39px;
+
+					background: url("./arrow.svg") center no-repeat;
+					background-size: contain;
+
+					@media screen and (max-width: 1199.98px) {
+						margin-inline-start: 15px;
+					}
+				}
+			}
+		}
+	}
+
+	tbody {
+		@media screen and (min-width: 799.98px) {
+			border: 1px solid #e3e6ec;
+			border-top: none;
+
+			.row + .row {
+				border-top: 1px solid #e3e6ec;
+			}
+		}
+
+		td {
+			padding: 14px 10px;
+
+			font-size: 13px;
+			font-weight: 500;
+			line-height: 1.37;
+
+			@media screen and (min-width: 799.98px) {
+				min-height: 56px;
+			}
+		}
+
+		.id {
+			@media screen and (min-width: 799.98px) {
+				height: 56px;
+			}
+		}
+
+		@media screen and (min-width: 799.98px) {
+			.id,
+			.title {
+				border-right: 1px solid #e3e6ec;
+			}
+		}
+	}
+
+	@media screen and (min-width: 799.98px) {
+		.id {
+			width: 10%;
+			text-align: center;
+		}
+		.title {
+			width: 45%;
+		}
+		.body {
+			width: 45%;
+		}
+	}
+
+	@media screen and (max-width: 799.98px) {
+		border: 0;
+
+		thead {
+			display: none;
+		}
+
+		tr {
+			display: block;
+			padding: 0 10px;
+			margin-bottom: 10px;
+			background: #ffffff;
+			box-shadow: 0px 4px 27px 0px rgba(230, 231, 234, 0.78);
+			border-radius: 5px;
+		}
+
+		td {
+			display: flex;
+			justify-content: space-between;
+			text-align: right;
+			border-bottom: 1px solid #e4e4e4;
+			border-right: 1px solid transparent;
+		}
+
+		td:last-child {
+			border-bottom: 0;
+		}
+
+		td:before {
+			content: attr(data-label);
+			margin-right: 15px;
+			font-weight: 600;
+		}
+	}
+}
