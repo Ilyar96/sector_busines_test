@@ -1,0 +1,95 @@
+.wrapper {
+}
+
+.pagination {
+	display: flex;
+	align-items: center;
+	padding: 0;
+
+	@media screen and (min-width: 575.98px) {
+		padding: 0 25px;
+	}
+
+	.disabledItem {
+		padding: 5px;
+	}
+
+	.pageItem {
+		list-style: none;
+
+		.pageLink {
+			display: inline-block;
+			padding: 5px;
+
+			font-size: 14px;
+			font-style: italic;
+			font-weight: 700;
+			text-decoration: none;
+			line-height: 1;
+			color: #474955;
+
+			transition: color 0.3s ease;
+
+			@media screen and (min-width: 575.98px) {
+				font-size: 18px;
+			}
+
+			@media (any-hover: hover) {
+				&:hover {
+					color: #96c465;
+				}
+			}
+		}
+
+		&.active .pageLink {
+			color: #7ebc3c;
+		}
+
+		&:first-child .pageLink,
+		&:last-child .pageLink {
+			font-size: 16px;
+			font-weight: 500;
+			text-decoration: none;
+			color: #474955;
+
+			@media screen and (min-width: 575.98px) {
+				font-size: 20px;
+			}
+
+			@media screen and (min-width: 1199.98px) {
+				font-size: 24px;
+			}
+
+			@media (any-hover: hover) {
+				&:hover {
+					color: #96c465;
+				}
+			}
+		}
+
+		&:first-child {
+			margin-right: auto;
+		}
+
+		&:last-child {
+			margin-left: auto;
+		}
+	}
+
+	li + li {
+		.pageLink {
+		}
+	}
+}
+
+.active {
+	.pageLink,
+	.pageLink:hover {
+		cursor: default;
+	}
+}
+
+.disabledItem {
+	pointer-events: none;
+	opacity: 0.5;
+}

@@ -4,6 +4,7 @@ import UsersTable from "../../components/users-table/UsersTable";
 import { User } from "../../components/users-table/UsersTable.type";
 
 import styles from "./Home.module.scss";
+import { Pagination } from "../../components/pagination/Pagination";
 
 const mockData: User[] = [
 	{
@@ -22,13 +23,14 @@ const mockData: User[] = [
 
 const Home = () => {
 	return (
-		<div>
+		<div className={styles.root}>
 			<section>
 				<h1 className="visually-hidden">Данные пользователей</h1>
 
 				<Container className={styles.container}>
 					<SearchInput />
 					<UsersTable users={mockData} className={styles.table} />
+					<Pagination />
 				</Container>
 			</section>
 		</div>
