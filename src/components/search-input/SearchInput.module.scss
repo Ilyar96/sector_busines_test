@@ -1,0 +1,43 @@
+.root {
+	display: flex;
+	max-width: 631px;
+
+	background: #5a5c66;
+
+	.input {
+		flex: 1 1;
+		padding: 18px 26px;
+
+		font-size: 14px;
+
+		color: #fff;
+		background: #5a5c66;
+		border: none;
+
+		::placeholder {
+			color: #b2b7bf;
+		}
+	}
+
+	.btn {
+		padding: 13px 24px;
+
+		border: none;
+		background: #5a5c66;
+		cursor: pointer;
+
+		transition: background-color 0.3s ease;
+
+		@media (any-hover: hover) {
+			&:hover {
+				background: #474955;
+			}
+		}
+
+		img {
+			width: 21px;
+			height: 21px;
+			object-fit: contain;
+		}
+	}
+}
