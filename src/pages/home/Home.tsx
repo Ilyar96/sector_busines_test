@@ -1,27 +1,33 @@
 import Container from "../../components/container/Container";
 import SearchInput from "../../components/search-input/SearchInput";
 import UsersTable from "../../components/users-table/UsersTable";
-import { User } from "../../components/users-table/UsersTable.type";
+import { Pagination } from "../../components/pagination/Pagination";
+import { useActions } from "../../components/hooks/useActions";
 
 import styles from "./Home.module.scss";
-import { Pagination } from "../../components/pagination/Pagination";
-
-const mockData: User[] = [
-	{
-		userId: 1,
-		id: 5,
-		title: "nesciunt quas odio",
-		body: "repudiandae veniam quaerat sunt sed alias aut fugiat sit autem sed est voluptatem omnis possimu esse voluptatibus quis est aut tenetur dolor neque",
-	},
-	{
-		userId: 1,
-		id: 6,
-		title: "dolorem eum magni eos aperiam quia",
-		body: "ut aspernatur corporis harum nihil quis provident sequi mollitia nobis aliquid molestiae perspiciatis et ea nemo ab reprehenderit accusantium quas voluptate dolores velit et doloremque molestiae",
-	},
-];
+import { useEffect } from "react";
+import { useAppSelector } from "../../store";
+import {
+	selectCurrentPage,
+	selectPageCount,
+	selectPaginatedUsers,
+} from "../../store/slices/users/selectors";
 
 const Home = () => {
+	const { fetchUsers, setCurrentPage } = useActions();
+	const paginatedUsers = useAppSelector(selectPaginatedUsers);
+	const currentPage = useAppSelector(selectCurrentPage);
+	const pageCount = useAppSelector(selectPageCount);
+
+	useEffect(() => {
+		fetchUsers();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const pageChangeHandler = (page: number) => {
+		setCurrentPage(page);
+	};
+
 	return (
 		<div className={styles.root}>
 			<section>
@@ -29,8 +35,12 @@ const Home = () => {
 
 				<Container className={styles.container}>
 					<SearchInput />
-					<UsersTable users={mockData} className={styles.table} />
-					<Pagination />
+					<UsersTable users={paginatedUsers} className={styles.table} />
+					<Pagination
+						current={currentPage}
+						total={pageCount}
+						onPageChange={pageChangeHandler}
+					/>
 				</Container>
 			</section>
 		</div>

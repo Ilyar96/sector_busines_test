@@ -1,16 +1,12 @@
 import { FC } from "react";
-import ResponsivePagination from "react-responsive-pagination";
+import ResponsivePagination, {
+	ResponsivePaginationProps,
+} from "react-responsive-pagination";
 import cn from "classnames";
 
 import styles from "./Pagination.module.scss";
 
-export const Pagination: FC = () => {
-	const page = 1;
-	const pages = 10;
-	const pageChangeHandler = (page: number) => {
-		console.log("page: ", page);
-	};
-
+export const Pagination: FC<ResponsivePaginationProps> = (props) => {
 	return (
 		<div className={styles.wrapper}>
 			<ResponsivePagination
@@ -24,9 +20,7 @@ export const Pagination: FC = () => {
 				disabledItemClassName={styles.disabledItem}
 				disabledLinkClassName={styles.disabledLink}
 				activeItemClassName={styles.active}
-				current={page}
-				total={pages}
-				onPageChange={pageChangeHandler}
+				{...props}
 			/>
 		</div>
 	);

@@ -8,7 +8,9 @@ const UsersTableHeader = () => {
 				<th
 					className={classnames(styles.header_cell, styles.active, styles.id)}
 				>
-					ID
+					<button className={styles.sortBtn} type="button">
+						ID
+					</button>
 				</th>
 				<th
 					className={classnames(
@@ -17,12 +19,16 @@ const UsersTableHeader = () => {
 						styles.title
 					)}
 				>
-					Заголовок
+					<button className={styles.sortBtn} type="button">
+						Заголовок
+					</button>
 				</th>
 				<th
 					className={classnames(styles.active, styles.header_cell, styles.body)}
 				>
-					Описание
+					<button className={styles.sortBtn} type="button">
+						Описание
+					</button>
 				</th>
 			</tr>
 		</thead>

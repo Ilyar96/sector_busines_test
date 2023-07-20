@@ -7,10 +7,13 @@ import { UsersTableProps } from "./UsersTable.type";
 
 import styles from "./UsersTable.module.scss";
 import { useMedia } from "../hooks/useMedia";
+import { useAppSelector } from "../../store";
+import { selectUsersPerPage } from "../../store/slices/users/selectors";
 
 const UsersTable: FC<UsersTableProps> = ({ users, className = "" }) => {
+	const usersPerPage = useAppSelector(selectUsersPerPage);
 	const isMobile = useMedia("(max-width: 799.98px)");
-	const isNeedEmptyRows = !isMobile && users.length < 10;
+	const isNeedEmptyRows = !isMobile && users.length < usersPerPage;
 
 	return (
 		<table className={cn(styles.table, className)}>
@@ -20,7 +23,7 @@ const UsersTable: FC<UsersTableProps> = ({ users, className = "" }) => {
 					<UsersTableRow key={user.id} {...user} />
 				))}
 				{isNeedEmptyRows &&
-					Array.from(Array(10 - users.length)).map((_, i) => (
+					Array.from(Array(usersPerPage - users.length)).map((_, i) => (
 						<UsersTableRow key={i} userId={0} id={0} title={""} body={""} />
 					))}
 			</tbody>
