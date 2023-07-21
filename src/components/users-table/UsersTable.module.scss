@@ -26,13 +26,6 @@
 
 				transition: background-color 0.3s ease;
 
-				@media (any-hover: hover) {
-					&:hover {
-						background: #5a5c66;
-					}
-				}
-			}
-			&.active .sortBtn {
 				&::after {
 					content: "";
 					display: inline-block;
@@ -42,10 +35,29 @@
 
 					background: url("./arrow.svg") center no-repeat;
 					background-size: contain;
+					opacity: 0;
+
+					transition: opacity 0.3s ease, transform 0.3s ease;
 
 					@media screen and (max-width: 1199.98px) {
 						margin-inline-start: 15px;
 					}
+				}
+
+				@media (any-hover: hover) {
+					&:hover {
+						background: #5a5c66;
+					}
+				}
+			}
+			&.active .sortBtn {
+				&::after {
+					opacity: 1;
+				}
+			}
+			&.active.desc .sortBtn {
+				&::after {
+					transform: rotate(180deg);
 				}
 			}
 		}

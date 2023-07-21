@@ -10,12 +10,12 @@ import { useAppSelector } from "../../store";
 import {
 	selectCurrentPage,
 	selectPageCount,
-	selectPaginatedUsers,
+	selectPaginatedAndSortedUsers,
 } from "../../store/slices/users/selectors";
 
 const Home = () => {
 	const { fetchUsers, setCurrentPage } = useActions();
-	const paginatedUsers = useAppSelector(selectPaginatedUsers);
+	const paginatedUsers = useAppSelector(selectPaginatedAndSortedUsers);
 	const currentPage = useAppSelector(selectCurrentPage);
 	const pageCount = useAppSelector(selectPageCount);
 
