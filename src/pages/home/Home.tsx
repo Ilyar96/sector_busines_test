@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import Container from "../../components/container/Container";
 import SearchInput from "../../components/search-input/SearchInput";
@@ -41,7 +41,7 @@ const Home = () => {
 			return;
 		}
 
-		if (isNaN(+page)) {
+		if (isNaN(+page) || +page > pageCount) {
 			setSearchParams({ page: "1" });
 			return;
 		}
