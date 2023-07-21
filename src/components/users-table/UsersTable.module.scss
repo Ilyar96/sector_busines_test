@@ -1,4 +1,5 @@
 .table {
+	width: 100%;
 	border-collapse: collapse;
 
 	.header {
@@ -98,6 +99,13 @@
 				border-right: 1px solid #e3e6ec;
 			}
 		}
+
+		.emptyCell {
+			justify-content: center;
+			width: 100%;
+
+			text-align: center;
+		}
 	}
 
 	@media screen and (min-width: 799.98px) {
@@ -132,7 +140,7 @@
 		td {
 			display: flex;
 			justify-content: space-between;
-			text-align: right;
+			text-align: end;
 			border-bottom: 1px solid #e4e4e4;
 			border-right: 1px solid transparent;
 		}

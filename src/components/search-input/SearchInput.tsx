@@ -1,21 +1,29 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { useActions } from "../hooks/useActions";
 
 import searchIcon from "./search.svg";
+import closeIcon from "./close.svg";
 import styles from "./SearchInput.module.scss";
+import cn from "classnames";
 
 const SearchInput = () => {
 	const [value, setValue] = useState("");
-	const { setSearchQuery } = useActions();
+	const { setSearchQuery, setCurrentPage } = useActions();
 
-	useEffect(() => {
+	const onSearchClick = () => {
 		setSearchQuery(value.trim());
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [value]);
+	};
 
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setValue(e.target.value);
+		setCurrentPage(1);
+	};
+
+	const onReset = () => {
+		setValue("");
+		setSearchQuery("");
+		setCurrentPage(1);
 	};
 
 	return (
@@ -27,7 +35,15 @@ const SearchInput = () => {
 				onChange={onChange}
 				placeholder="Поиск"
 			/>
-			<button className={styles.btn} type="button">
+			<button
+				className={cn(styles.resetBtn, { [styles.active]: value.length })}
+				type="button"
+				onClick={onReset}
+			>
+				<img src={closeIcon} alt="Очистить поле" />
+				<span className="visually-hidden">Очистить поле</span>
+			</button>
+			<button className={styles.btn} type="button" onClick={onSearchClick}>
 				<img src={searchIcon} alt="Поиск" />
 				<span className="visually-hidden">Поиск пользователя</span>
 			</button>

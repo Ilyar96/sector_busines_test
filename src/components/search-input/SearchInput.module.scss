@@ -1,4 +1,6 @@
 .root {
+	position: relative;
+
 	display: flex;
 	max-width: 631px;
 
@@ -6,7 +8,8 @@
 
 	.input {
 		flex: 1 1;
-		padding: 18px 26px;
+		width: 100%;
+		padding: 18px 70px 18px 26px;
 
 		font-size: 14px;
 
@@ -19,7 +22,8 @@
 		}
 	}
 
-	.btn {
+	.btn,
+	.resetBtn {
 		padding: 13px 24px;
 
 		border: none;
@@ -33,11 +37,28 @@
 				background: #474955;
 			}
 		}
+	}
 
+	.btn {
 		img {
 			width: 21px;
 			height: 21px;
 			object-fit: contain;
+		}
+	}
+
+	.resetBtn {
+		position: absolute;
+		top: 1px;
+		right: 71px;
+		z-index: 1;
+
+		height: 50px;
+		opacity: 0;
+		transition: background-color 0.3s ease, opacity 0.3s ease;
+
+		&.active {
+			opacity: 1;
 		}
 	}
 }

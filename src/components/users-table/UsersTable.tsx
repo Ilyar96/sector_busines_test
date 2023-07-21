@@ -14,10 +14,11 @@ const UsersTable: FC<UsersTableProps> = ({ users, className = "" }) => {
 	const usersPerPage = useAppSelector(selectUsersPerPage);
 	const isMobile = useMedia("(max-width: 799.98px)");
 	const isNeedEmptyRows = !isMobile && users.length < usersPerPage;
+	const isMobileAndEmpty = isMobile && users.length === 0;
 
 	return (
 		<table className={cn(styles.table, className)}>
-			<UsersTableHeader />
+			{!isMobile && <UsersTableHeader />}
 			<tbody>
 				{users.map((user) => (
 					<UsersTableRow key={user.id} {...user} />
@@ -26,6 +27,11 @@ const UsersTable: FC<UsersTableProps> = ({ users, className = "" }) => {
 					Array.from(Array(usersPerPage - users.length)).map((_, i) => (
 						<UsersTableRow key={i} userId={0} id={0} title={""} body={""} />
 					))}
+				{isMobileAndEmpty && (
+					<tr>
+						<td className={styles.emptyCell}>Ничего не найдено</td>
+					</tr>
+				)}
 			</tbody>
 		</table>
 	);
