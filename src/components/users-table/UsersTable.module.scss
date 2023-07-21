@@ -34,9 +34,10 @@
 					height: 6px;
 					margin-inline-start: 39px;
 
-					background: url("./arrow.svg") center no-repeat;
+					background: url("../../assets/img/arrow.svg") center no-repeat;
 					background-size: contain;
 					opacity: 0;
+					transform: rotate(180deg);
 
 					transition: opacity 0.3s ease, transform 0.3s ease;
 
@@ -58,7 +59,7 @@
 			}
 			&.active.desc .sortBtn {
 				&::after {
-					transform: rotate(180deg);
+					transform: rotate(0);
 				}
 			}
 		}

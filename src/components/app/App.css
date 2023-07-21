@@ -3,6 +3,10 @@ body {
 	font-family: Roboto;
 }
 
+*:focus {
+	outline-color: #7EBC3C;
+}
+
 .visually-hidden {
 	position: absolute;
 	width: 1px;

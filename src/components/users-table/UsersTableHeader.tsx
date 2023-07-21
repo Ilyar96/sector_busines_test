@@ -1,4 +1,3 @@
-import { MouseEvent } from "react";
 import classnames from "classnames";
 
 import { useActions } from "../hooks/useActions";
@@ -7,9 +6,9 @@ import {
 	selectSortField,
 	selectSortOrder,
 } from "../../store/slices/users/selectors";
+import { SortField, SortOrder } from "../../store/slices/users/types";
 
 import styles from "./UsersTable.module.scss";
-import { SortField, SortOrder } from "../../store/slices/users/types";
 
 const headerCells = [
 	{

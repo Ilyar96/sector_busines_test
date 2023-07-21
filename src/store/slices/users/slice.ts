@@ -17,6 +17,20 @@ export const initialState: IUsersSliceState = {
 	sortOrder: SortOrder.ASC,
 };
 
+export const getSortedUserItems = (
+	items: User[],
+	sortField: SortField,
+	sortOrder: SortOrder
+) => {
+	return items.sort((user1, user2) => {
+		if (sortOrder === SortOrder.ASC) {
+			return user1[sortField] > user2[sortField] ? 1 : -1;
+		} else {
+			return user1[sortField] > user2[sortField] ? -1 : 1;
+		}
+	});
+};
+
 export const pizzasSlice = createSlice({
 	name: "users",
 	initialState,
@@ -34,8 +48,12 @@ export const pizzasSlice = createSlice({
 				item.title.toLowerCase().includes(action.payload.toLowerCase())
 			);
 
+			state.searchedItems = getSortedUserItems(
+				searchedItems,
+				state.sortField,
+				state.sortOrder
+			);
 			state.searchQuery = action.payload;
-			state.searchedItems = searchedItems;
 			state.pageCount = state.pageCount = Math.ceil(
 				searchedItems.length / state.itemsPerPage
 			);
@@ -49,13 +67,11 @@ export const pizzasSlice = createSlice({
 			const { sortField, sortOrder } = action.payload;
 			state.sortField = sortField;
 			state.sortOrder = sortOrder;
-			state.searchedItems.sort((user1, user2) => {
-				if (sortOrder === SortOrder.ASC) {
-					return user1[sortField] > user2[sortField] ? 1 : -1;
-				} else {
-					return user1[sortField] > user2[sortField] ? -1 : 1;
-				}
-			});
+			state.searchedItems = getSortedUserItems(
+				state.searchedItems,
+				state.sortField,
+				state.sortOrder
+			);
 			state.paginatedAndSortedItems = getPaginatedItems(
 				state.searchedItems,
 				state.currentPage,

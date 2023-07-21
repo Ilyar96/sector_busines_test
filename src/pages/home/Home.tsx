@@ -12,15 +12,22 @@ import {
 	selectPageCount,
 	selectPaginatedAndSortedUsers,
 } from "../../store/slices/users/selectors";
+import UsersSort from "../../components/users-sort/UsersSort";
+import { useMedia } from "../../components/hooks/useMedia";
 
 const Home = () => {
 	const { fetchUsers, setCurrentPage } = useActions();
 	const paginatedUsers = useAppSelector(selectPaginatedAndSortedUsers);
 	const currentPage = useAppSelector(selectCurrentPage);
 	const pageCount = useAppSelector(selectPageCount);
+	const isMobile = useMedia("(max-width: 799.98px)");
 
 	useEffect(() => {
-		fetchUsers();
+		try {
+			fetchUsers();
+		} catch (error) {
+			console.error((error as Error).message);
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -36,6 +43,7 @@ const Home = () => {
 
 				<Container className={styles.container}>
 					<SearchInput />
+					{isMobile && <UsersSort />}
 					<UsersTable users={paginatedUsers} className={styles.table} />
 					<Pagination
 						current={currentPage}

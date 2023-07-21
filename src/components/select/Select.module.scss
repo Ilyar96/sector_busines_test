@@ -1,0 +1,108 @@
+.select {
+	width: 100%;
+
+	:global {
+		.react-select__control {
+			position: relative;
+
+			padding: 18px 26px;
+
+			border-radius: 0;
+			border: none;
+			background: #5a5c66;
+			box-shadow: none;
+			cursor: pointer;
+
+			transition: background-color 0.3s ease;
+
+			@media (any-hover: hover) {
+				&:hover {
+					background: #474955;
+				}
+			}
+
+			&--is-focused {
+				outline: 2px solid #7ebc3c !important;
+			}
+
+			&::after {
+				position: absolute;
+				top: 50%;
+				right: 26px;
+
+				content: "";
+				display: block;
+				width: 20px;
+				height: 20px;
+				margin-top: -10px;
+
+				background: url("../../assets/img/arrow.svg") center no-repeat;
+				background-size: contain;
+
+				transition: transform 0.3s ease;
+			}
+
+			&.react-select__control--menu-is-open {
+				&::after {
+					transform: rotate(180deg);
+				}
+			}
+		}
+
+		.react-select__single-value {
+			margin: 0;
+
+			font-family: Roboto;
+			font-size: 14px;
+			font-weight: 400;
+
+			color: #fff;
+		}
+
+		.react-select__menu-list {
+			background: #5a5c66;
+		}
+		.react-select__option {
+			padding: 10px 26px;
+
+			background: #5a5c66;
+			color: #fff;
+
+			transition: background-color 0.3s ease;
+
+			&.react-select__option--is-focused {
+				background: #474955;
+			}
+
+			&.react-select__option--is-selected {
+				background: #3e414f;
+				cursor: auto;
+			}
+		}
+
+		.react-select__value-container,
+		.react-select__input-container,
+		.react-select__placeholder {
+			padding: 0;
+			margin: 0;
+		}
+
+		.react-select__input-container {
+			margin: 0;
+		}
+		.react-select__option {
+			cursor: pointer;
+
+			&--is-focused,
+			&--is-selected,
+			&:focus {
+				// background: rgba($color: $primary-color-hover, $alpha: 0.3);
+				// color: $text-color;
+			}
+
+			&:active {
+				// background: rgba($color: $primary-color-active, $alpha: 0.35);
+			}
+		}
+	}
+}

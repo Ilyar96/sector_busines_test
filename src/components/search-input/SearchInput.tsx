@@ -1,11 +1,11 @@
 import { ChangeEvent, useState } from "react";
+import cn from "classnames";
 
 import { useActions } from "../hooks/useActions";
 
-import searchIcon from "./search.svg";
-import closeIcon from "./close.svg";
+import searchIcon from "../../assets/img/search.svg";
+import closeIcon from "../../assets/img/close.svg";
 import styles from "./SearchInput.module.scss";
-import cn from "classnames";
 
 const SearchInput = () => {
 	const [value, setValue] = useState("");
